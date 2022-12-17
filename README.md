@@ -23,7 +23,7 @@ site code + 문제 번호
 * Softeer : H
 
 ## 문제 리스트
-|날짜|문제이름|태그|
-|---|---|---|
-|||<details><summary></summary><p></p></details>|
-|20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|<details><summary>#simulation</summary><p>#Queue</p></details>|
+|날짜|문제이름|내 코드|태그|
+|---|---|---|---|
+||||<details><summary></summary><p></p></details>|
+|20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EA%B5%90%EC%B0%A8%EB%A1%9C/Main0.java)|<details><summary>#simulation</summary><p>#Queue</p></details>|
