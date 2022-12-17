@@ -9,7 +9,7 @@ ex) 20221217-solved-H803: 평범한 시뮬레이션 문제 #simulation
 ### state 종류
 * solving : 문제 푸는 중
 * solved : 문제 풀이 완료
-* fix : 풀이 틀린부분 수정
+* fix : 풀이 및 readme 수정
 * refactor : 코드 리펙토링 or 파일, 폴더 변경 및 수정
 * docs : readme 업데이트
 
@@ -26,4 +26,4 @@ site code + 문제 번호
 |날짜|문제이름|태그|
 |---|---|---|
 |||<details><summary></summary><p></p></details>|
-|20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|<details><summary></summary><p>#simulation #Queue</p></details>|
+|20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|<details><summary>#simulation</summary><p>#Queue</p></details>|
