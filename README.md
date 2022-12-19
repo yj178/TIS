@@ -26,4 +26,5 @@ site code + 문제 번호
 |날짜|문제이름|내 코드|태그|
 |---|---|---|---|
 ||||<details><summary></summary><p></p></details>|
+|20221219|[로드 밸런서 트래픽 예측](https://softeer.ai/practice/info.do?idx=1&eid=629)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EB%A1%9C%EB%93%9C_%EB%B0%B8%EB%9F%B0%EC%84%9C_%ED%8A%B8%EB%9E%98%ED%94%BD_%EC%98%88%EC%B8%A1/Main0.java)|<details><summary>#algorithm</summary><p>#topological sort</p></details>|
 |20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EA%B5%90%EC%B0%A8%EB%A1%9C/Main0.java)|<details><summary>#simulation</summary><p>#Queue</p></details>|
