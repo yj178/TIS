@@ -1,6 +1,6 @@
 package 마법의_엘리베이터;
 
-public class Solution {
+class Solution {
     public static void main(String[] args) {
         Solution test = new Solution();
         System.out.println(test.solution(16));
