@@ -23,8 +23,11 @@ site code + 문제 번호
 * Softeer : H
 
 ## 문제 리스트
-|날짜|문제이름|내 코드|태그|
-|---|---|---|---|
-||||<details><summary></summary><p></p></details>|
-|20221219|[로드 밸런서 트래픽 예측](https://softeer.ai/practice/info.do?idx=1&eid=629)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EB%A1%9C%EB%93%9C_%EB%B0%B8%EB%9F%B0%EC%84%9C_%ED%8A%B8%EB%9E%98%ED%94%BD_%EC%98%88%EC%B8%A1/Main0.java)|<details><summary>#algorithm</summary><p>#topological sort</p></details>|
-|20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EA%B5%90%EC%B0%A8%EB%A1%9C/Main0.java)|<details><summary>#simulation</summary><p>#Queue</p></details>|
+|날짜|문제이름|내 코드|
+|---|---|---|
+|2023|[]()|[문제풀이]()|
+|20230103|[테이블 해시 함수](https://school.programmers.co.kr/learn/courses/30/lessons/147354)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/programmers/src/%ED%85%8C%EC%9D%B4%EB%B8%94_%ED%95%B4%EC%8B%9C_%ED%95%A8%EC%88%98/%ED%85%8C%EC%9D%B4%EB%B8%94_%ED%95%B4%EC%8B%9C_%ED%95%A8%EC%88%98.java)|
+|20230102|[유사 칸토어 비트열](https://school.programmers.co.kr/learn/courses/30/lessons/148652)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/programmers/src/%EC%9C%A0%EC%82%AC_%EC%B9%B8%ED%86%A0%EC%96%B4_%EB%B9%84%ED%8A%B8%EC%97%B4/Solution.java)|
+|20230102|[마법의 엘리베이터](https://school.programmers.co.kr/learn/courses/30/lessons/148653)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/programmers/src/%EB%A7%88%EB%B2%95%EC%9D%98_%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0/Solution.java)|
+|20221219|[로드 밸런서 트래픽 예측](https://softeer.ai/practice/info.do?idx=1&eid=629)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EB%A1%9C%EB%93%9C_%EB%B0%B8%EB%9F%B0%EC%84%9C_%ED%8A%B8%EB%9E%98%ED%94%BD_%EC%98%88%EC%B8%A1/Main0.java)|
+|20221217|[교차로](https://softeer.ai/practice/info.do?idx=1&eid=803)|[문제풀이](https://github.com/yj178/TIS/blob/main/AlgoProblems/Softeer/src/%EA%B5%90%EC%B0%A8%EB%A1%9C/Main0.java)|
