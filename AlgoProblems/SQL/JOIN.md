@@ -1,0 +1,15 @@
+# 주문량이 많은 아이스크림들 조회하기
+```roomsql
+SELECT
+    J.FLAVOR
+FROM
+    FIRST_HALF  AS F
+    LEFT JOIN JULY AS J
+    ON F.FLAVOR = J.FLAVOR
+GROUP BY
+    J.FLAVOR
+ORDER BY
+    SUM(F.TOTAL_ORDER) + SUM(F.TOTAL_ORDER) DESC
+LIMIT
+    3
+```
