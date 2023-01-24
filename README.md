@@ -9,6 +9,7 @@ ex) 20221217-solved-H803: 평범한 시뮬레이션 문제 #simulation
 ### state 종류
 * solving : 문제 푸는 중
 * solved : 문제 풀이 완료
+* fail : 문제 풀이 과정 중 실패한 경우
 * fix : 풀이 및 readme 수정
 * refactor : 코드 리펙토링 or 파일, 폴더 변경 및 수정
 * docs : readme 업데이트
