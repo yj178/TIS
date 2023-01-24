@@ -1,8 +1,10 @@
 package 인사고과;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class 인사고과 {
     public static void main(String[] args) {
@@ -27,12 +29,17 @@ public class 인사고과 {
             if (wanho.chk(s)) return -1;
         }
 
-        for (Score a : map.keySet()) {
+        List<Score> list = map.keySet().stream().sorted((s1, s2) -> s1.a != s2.a ? s2.a - s1.a : s2.b - s1.b).collect(Collectors.toList());
+
+        for (int i = list.size() - 1; i >= 0; i--) {
             boolean flag = true;
-            for(Score b : map.keySet()){
-                if(a.chk(b)) flag = false;
+            for (int j = 0; j < i; j++) {
+                if (list.get(i).b < list.get(j).b) {
+                    flag = false;
+                    break;
+                }
             }
-            if(flag) pq.add(a);
+            if (flag) pq.add(list.get(i));
         }
 
         int answer = 0;
