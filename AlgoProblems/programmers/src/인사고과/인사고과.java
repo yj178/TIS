@@ -25,7 +25,14 @@ public class 인사고과 {
 
         for (Score s : map.keySet()) {
             if (wanho.chk(s)) return -1;
-            pq.add(s);
+        }
+
+        for (Score a : map.keySet()) {
+            boolean flag = true;
+            for(Score b : map.keySet()){
+                if(a.chk(b)) flag = false;
+            }
+            if(flag) pq.add(a);
         }
 
         int answer = 0;
