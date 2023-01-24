@@ -32,8 +32,10 @@ public class 인사고과 {
         List<Score> list = map.keySet().stream().sorted((s1, s2) -> s1.a != s2.a ? s2.a - s1.a : s2.b - s1.b).collect(Collectors.toList());
 
         for (int i = list.size() - 1; i >= 0; i--) {
+            System.out.println(list.get(i));
             boolean flag = true;
             for (int j = 0; j < i; j++) {
+                if(list.get(i).a == list.get(j).a) break;
                 if (list.get(i).b < list.get(j).b) {
                     flag = false;
                     break;
