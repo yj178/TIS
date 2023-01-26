@@ -14,7 +14,6 @@ public class 표_병합 {
 
     static String[][] table;
     static int[][] heads;
-    static HashMap<String, HashSet<Integer>> map;
 
     public String[] solution(String[] commands) {
         table = new String[51][51];
@@ -24,8 +23,8 @@ public class 표_병합 {
                 heads[r][c] = (r - 1) * 50 + c;
             }
         }
-        map = new HashMap<>();
-        List<String> answer = new LinkedList<>();
+
+        List<String> answer = new ArrayList<>();
         for (String command : commands) {
             String[] line = command.split(" ");
             switch (line[0]) {
@@ -49,7 +48,7 @@ public class 표_병합 {
 //            viewTable();
         }
 
-        return answer.stream().toArray(String[]::new);
+        return answer.toArray(String[]::new);
     }
 
     static int find(int r, int c) {
@@ -63,17 +62,13 @@ public class 표_병합 {
         return heads[r][c] = find(head / 50 + 1, head % 50);
     }
 
-    static boolean union(int r1, int c1, int r2, int c2) {
+    static void union(int r1, int c1, int r2, int c2) {
         // 각각의 헤드값을 이용하여
+        if (r1 == r2 && c1 == c2) return;
         int a = find(r1, c1);
         int b = find(r2, c2);
         // 같은 경우 넘어감
-        if (a == b) return false;
-            // 다른 경우 헤드 값을 수정함
-        else {
-            heads[r2][c2] = heads[r1][c1];
-            return true;
-        }
+        if (a != b) heads[r2][c2] = heads[r1][c1];
     }
 
     static void viewHead() {
@@ -97,43 +92,20 @@ public class 표_병합 {
     // r, c 위치의 셀을 value로 업데이트
     static void update(int r, int c, String value) {
         // 해당 셀의 헤드 위치 파악
-        int idx = find(r, c);
-        int nr = idx / 50 + 1;
-        int nc = idx % 50;
+        int head = find(r, c);
+        int nr = head / 50 + 1;
+        int nc = head % 50;
 
-
-        HashSet<Integer> tmp = null;
-        // 기존 값의 기록 업데이트
-        if (table[nr][nc] != null) {
-            tmp = map.getOrDefault(table[nr][nc], new HashSet<>());
-            tmp.remove(idx);
-            map.put(table[nr][nc], tmp);
-        }
-        // 새로운 값 기록 업데이트
-        tmp = map.getOrDefault(value, new HashSet<>());
-        tmp.add(idx);
-        map.put(value, tmp);
-        // 단어 변경
         table[nr][nc] = value;
     }
 
     // v1 값을 가지고 있는 셀들을 모두 v2로 업데이트
     static void update(String v1, String v2) {
-//        HashSet<Integer> s1 = map.getOrDefault(v1, new HashSet<>());
-//        HashSet<Integer> s2 = map.getOrDefault(v2, new HashSet<>());
-//
-//        for (int s : s1) {
-//            s2.add(s);
-//        }
-//
-//        map.put(v1, new HashSet<>());
-//        map.put(v2, s2);
         for (int r = 1; r < 51; r++) {
             for (int c = 1; c < 51; c++) {
-                if(v1.equals(table[r][c])) table[r][c] = v2;
+                if (v1.equals(table[r][c])) table[r][c] = v2;
             }
         }
-
     }
 
     // r1,c1과 r2, c2 를 병합
@@ -166,7 +138,7 @@ public class 표_병합 {
         String tmp = table[head / 50 + 1][head % 50];
         for (int rr = 1; rr < 51; rr++) {
             for (int cc = 1; cc < 51; cc++) {
-                if (heads[rr][cc] == head) {
+                if (find(rr, cc) == head) {
                     heads[rr][cc] = (rr - 1) * 50 + cc;
                     update(rr, cc, null);
                 }
@@ -177,9 +149,9 @@ public class 표_병합 {
 
     // 값이 비어 있다면 "EMPTY"를 있다면 해당 값을 출력
     static String print(int r, int c) {
-        int idx = find(r, c);
-        int nr = idx / 50 + 1;
-        int nc = idx % 50;
+        int head = find(r, c);
+        int nr = head / 50 + 1;
+        int nc = head % 50;
         return table[nr][nc] == null ? "EMPTY" : table[nr][nc];
     }
 }
