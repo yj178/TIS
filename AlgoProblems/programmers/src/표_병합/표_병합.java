@@ -42,10 +42,6 @@ public class 표_병합 {
                     answer.add(print(Integer.parseInt(line[1]), Integer.parseInt(line[2])));
                     break;
             }
-//            System.out.println();
-//            System.out.println(command);
-//            viewHead();
-//            viewTable();
         }
 
         return answer.toArray(String[]::new);
@@ -53,7 +49,7 @@ public class 표_병합 {
 
     static int find(int r, int c) {
         // r,c의 헤드값이 일치하는 경우 리턴
-        if (heads[r][c] == (r - 1) * 50 + c) return heads[r][c];
+        if (heads[r][c] == ((r - 1) * 50) + c) return heads[r][c];
 
         // 일치하지 않는 경우
         // 헤당 헤드 값의 위치에서 새로운 헤드 값을 찾음
@@ -64,29 +60,9 @@ public class 표_병합 {
 
     static void union(int r1, int c1, int r2, int c2) {
         // 각각의 헤드값을 이용하여
-        if (r1 == r2 && c1 == c2) return;
         int a = find(r1, c1);
         int b = find(r2, c2);
-        // 같은 경우 넘어감
-        if (a != b) heads[r2][c2] = heads[r1][c1];
-    }
-
-    static void viewHead() {
-        for (int r = 1; r < 3; r++) {
-            for (int c = 1; c < 3; c++) {
-                System.out.printf("%5d", heads[r][c]);
-            }
-            System.out.println();
-        }
-    }
-
-    static void viewTable() {
-        for (int r = 1; r < 3; r++) {
-            for (int c = 1; c < 3; c++) {
-                System.out.printf("%10s", table[r][c]);
-            }
-            System.out.println();
-        }
+        heads[b / 50 + 1][b % 50] = heads[a / 50 + 1][a % 50];
     }
 
     // r, c 위치의 셀을 value로 업데이트
@@ -117,6 +93,7 @@ public class 표_병합 {
         if (r1 == r2 && c1 == c2) return;
         int idx1 = find(r1, c1);
         int idx2 = find(r2, c2);
+        if(idx1 == idx2) return;
         int nr1 = idx1 / 50 + 1;
         int nc1 = idx1 % 50;
         int nr2 = idx2 / 50 + 1;
@@ -134,7 +111,7 @@ public class 표_병합 {
     // 해당 셀이 포합하고 있던 모든 셀은 프로그램 실행 초기 상태?
     // 해제 전(합병된 상태?) 값이 있었다면 해당 값으로 복원 -> 이건 왜 적은 거지???
     static void unmerge(int r, int c) {
-        int head = heads[r][c];
+        int head = find(r, c);
         String tmp = table[head / 50 + 1][head % 50];
         for (int rr = 1; rr < 51; rr++) {
             for (int cc = 1; cc < 51; cc++) {
@@ -150,8 +127,7 @@ public class 표_병합 {
     // 값이 비어 있다면 "EMPTY"를 있다면 해당 값을 출력
     static String print(int r, int c) {
         int head = find(r, c);
-        int nr = head / 50 + 1;
-        int nc = head % 50;
-        return table[nr][nc] == null ? "EMPTY" : table[nr][nc];
+        return table[head / 50 + 1][head % 50] == null ? "EMPTY" : table[head / 50 + 1][head % 50];
     }
+
 }
