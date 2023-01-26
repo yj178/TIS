@@ -5,8 +5,10 @@ import java.util.*;
 public class 표_병합 {
     public static void main(String[] args) {
         표_병합 problem = new 표_병합();
-//        String[] commands = new String[]{"UPDATE 1 1 menu", "UPDATE 1 2 category", "UPDATE 2 1 bibimbap", "UPDATE 2 2 korean", "UPDATE 2 3 rice", "UPDATE 3 1 ramyeon", "UPDATE 3 2 korean", "UPDATE 3 3 noodle", "UPDATE 3 4 instant", "UPDATE 4 1 pasta", "UPDATE 4 2 italian", "UPDATE 4 3 noodle", "MERGE 1 2 1 3", "MERGE 1 3 1 4", "UPDATE korean hansik", "UPDATE 1 3 group", "UNMERGE 1 4", "PRINT 1 3", "PRINT 1 4"};
-        String[] commands = new String[]{"UPDATE 1 1 a", "UPDATE 1 2 b", "UPDATE 2 1 c", "UPDATE 2 2 d", "MERGE 1 1 1 2", "MERGE 2 2 2 1", "MERGE 2 1 1 1", "PRINT 1 1", "UNMERGE 2 2", "PRINT 1 1"};
+        String[] commands = new String[]{"UPDATE 1 1 menu", "UPDATE 1 2 category", "UPDATE 2 1 bibimbap", "UPDATE 2 2 korean", "UPDATE 2 3 rice", "UPDATE 3 1 ramyeon", "UPDATE 3 2 korean", "UPDATE 3 3 noodle", "UPDATE 3 4 instant", "UPDATE 4 1 pasta", "UPDATE 4 2 italian", "UPDATE 4 3 noodle", "MERGE 1 2 1 3", "MERGE 1 3 1 4", "UPDATE korean hansik", "UPDATE 1 3 group", "UNMERGE 1 4", "PRINT 1 3", "PRINT 1 4"};
+//        String[] commands = new String[]{"UPDATE 1 1 a", "UPDATE 1 2 b", "UPDATE 2 1 c", "UPDATE 2 2 d", "MERGE 1 1 1 2", "MERGE 2 2 2 1", "MERGE 2 1 1 1", "PRINT 1 1", "UNMERGE 2 2", "PRINT 1 1"};
+//        String[] commands = new String[]{"PRINT 1 1"};
+
         System.out.println(Arrays.toString(problem.solution(commands)));
     }
 
@@ -51,16 +53,23 @@ public class 표_병합 {
     }
 
     static int find(int r, int c) {
+        // r,c의 헤드값이 일치하는 경우 리턴
         if (heads[r][c] == (r - 1) * 50 + c) return heads[r][c];
 
+        // 일치하지 않는 경우
+        // 헤당 헤드 값의 위치에서 새로운 헤드 값을 찾음
+        // 리턴 과정에서 값을 업데이트 함
         int head = heads[r][c];
         return heads[r][c] = find(head / 50 + 1, head % 50);
     }
 
     static boolean union(int r1, int c1, int r2, int c2) {
+        // 각각의 헤드값을 이용하여
         int a = find(r1, c1);
         int b = find(r2, c2);
+        // 같은 경우 넘어감
         if (a == b) return false;
+            // 다른 경우 헤드 값을 수정함
         else {
             heads[r2][c2] = heads[r1][c1];
             return true;
@@ -87,32 +96,44 @@ public class 표_병합 {
 
     // r, c 위치의 셀을 value로 업데이트
     static void update(int r, int c, String value) {
+        // 해당 셀의 헤드 위치 파악
         int idx = find(r, c);
         int nr = idx / 50 + 1;
         int nc = idx % 50;
-        HashSet<Integer> tmp = map.getOrDefault(table[nr][nc], new HashSet<>());
-        if (table[nr][nc] == null) {
-            tmp.add(idx);
-        } else {
+
+
+        HashSet<Integer> tmp = null;
+        // 기존 값의 기록 업데이트
+        if (table[nr][nc] != null) {
+            tmp = map.getOrDefault(table[nr][nc], new HashSet<>());
             tmp.remove(idx);
-            tmp = map.getOrDefault(value, new HashSet<>());
-            tmp.add(idx);
+            map.put(table[nr][nc], tmp);
         }
+        // 새로운 값 기록 업데이트
+        tmp = map.getOrDefault(value, new HashSet<>());
+        tmp.add(idx);
         map.put(value, tmp);
+        // 단어 변경
         table[nr][nc] = value;
     }
 
     // v1 값을 가지고 있는 셀들을 모두 v2로 업데이트
     static void update(String v1, String v2) {
-        HashSet<Integer> s1 = map.getOrDefault(v1, new HashSet<>());
-        HashSet<Integer> s2 = map.getOrDefault(v2, new HashSet<>());
-
-        for (int s : s1) {
-            s2.add(s);
+//        HashSet<Integer> s1 = map.getOrDefault(v1, new HashSet<>());
+//        HashSet<Integer> s2 = map.getOrDefault(v2, new HashSet<>());
+//
+//        for (int s : s1) {
+//            s2.add(s);
+//        }
+//
+//        map.put(v1, new HashSet<>());
+//        map.put(v2, s2);
+        for (int r = 1; r < 51; r++) {
+            for (int c = 1; c < 51; c++) {
+                if(v1.equals(table[r][c])) table[r][c] = v2;
+            }
         }
 
-        map.put(v1, new HashSet<>());
-        map.put(v2, s2);
     }
 
     // r1,c1과 r2, c2 를 병합
@@ -124,17 +145,15 @@ public class 표_병합 {
         if (r1 == r2 && c1 == c2) return;
         int idx1 = find(r1, c1);
         int idx2 = find(r2, c2);
-        int nr1 = idx1/50+1;
-        int nc1 = idx1%50;
+        int nr1 = idx1 / 50 + 1;
+        int nc1 = idx1 % 50;
         int nr2 = idx2 / 50 + 1;
         int nc2 = idx2 % 50;
 
-        if (table[nr1][nc1] != null && table[nr2][nc2] != null) {
-            update(nr2, nc2, null);
-        } else if (table[nr1][nc1] == null && table[nr2][nc2] != null) {
+        if (table[nr1][nc1] == null && table[nr2][nc2] != null) {
             update(nr1, nc1, table[nr2][nc2]);
-            update(nr2, nc2, null);
         }
+        update(nr2, nc2, null);
         union(nr1, nc1, nr2, nc2);
 
     }
