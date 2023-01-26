@@ -48,26 +48,13 @@ public class 표_병합 {
     }
 
     static int find(int r, int c) {
-        // r,c의 헤드값이 일치하는 경우 리턴
         if (heads[r][c] == ((r - 1) * 50) + c) return heads[r][c];
 
-        // 일치하지 않는 경우
-        // 헤당 헤드 값의 위치에서 새로운 헤드 값을 찾음
-        // 리턴 과정에서 값을 업데이트 함
         int head = heads[r][c];
         return heads[r][c] = find(head / 50 + 1, head % 50);
     }
 
-    static void union(int r1, int c1, int r2, int c2) {
-        // 각각의 헤드값을 이용하여
-        int a = find(r1, c1);
-        int b = find(r2, c2);
-        heads[b / 50 + 1][b % 50] = heads[a / 50 + 1][a % 50];
-    }
-
-    // r, c 위치의 셀을 value로 업데이트
     static void update(int r, int c, String value) {
-        // 해당 셀의 헤드 위치 파악
         int head = find(r, c);
         int nr = head / 50 + 1;
         int nc = head % 50;
@@ -75,7 +62,6 @@ public class 표_병합 {
         table[nr][nc] = value;
     }
 
-    // v1 값을 가지고 있는 셀들을 모두 v2로 업데이트
     static void update(String v1, String v2) {
         for (int r = 1; r < 51; r++) {
             for (int c = 1; c < 51; c++) {
@@ -84,16 +70,11 @@ public class 표_병합 {
         }
     }
 
-    // r1,c1과 r2, c2 를 병합
-    // 같은 위치인 경우 무시, 인접하지 않은 경우 사이 셀들은 무시
-    // 두 셀 중 하나의 셀만 값을지고 있는 경우 해당 값으로 병합된 셀의 값을 가짐
-    // 두셀 모두 값이 있는 경우 r1, c1값으로 통일
-    // 이후 r1, c1, 혹은 r2,c2 어느 위치여도 병합된 셀로 접근
     static void merge(int r1, int c1, int r2, int c2) {
         if (r1 == r2 && c1 == c2) return;
         int idx1 = find(r1, c1);
         int idx2 = find(r2, c2);
-        if(idx1 == idx2) return;
+        if (idx1 == idx2) return;
         int nr1 = idx1 / 50 + 1;
         int nc1 = idx1 % 50;
         int nr2 = idx2 / 50 + 1;
@@ -102,14 +83,16 @@ public class 표_병합 {
         if (table[nr1][nc1] == null && table[nr2][nc2] != null) {
             update(nr1, nc1, table[nr2][nc2]);
         }
-        update(nr2, nc2, null);
-        union(nr1, nc1, nr2, nc2);
+
+        for (int r = 1; r < 51; r++) {
+            for (int c = 1; c < 51; c++) {
+                if (heads[r][c] == idx1 || heads[r][c] == idx2) heads[r][c] = idx1;
+            }
+        }
+        table[nr2][nc2] = null;
 
     }
 
-    // 해당 셀의 모든 병합 해제
-    // 해당 셀이 포합하고 있던 모든 셀은 프로그램 실행 초기 상태?
-    // 해제 전(합병된 상태?) 값이 있었다면 해당 값으로 복원 -> 이건 왜 적은 거지???
     static void unmerge(int r, int c) {
         int head = find(r, c);
         String tmp = table[head / 50 + 1][head % 50];
@@ -124,7 +107,6 @@ public class 표_병합 {
         update(r, c, tmp);
     }
 
-    // 값이 비어 있다면 "EMPTY"를 있다면 해당 값을 출력
     static String print(int r, int c) {
         int head = find(r, c);
         return table[head / 50 + 1][head % 50] == null ? "EMPTY" : table[head / 50 + 1][head % 50];
