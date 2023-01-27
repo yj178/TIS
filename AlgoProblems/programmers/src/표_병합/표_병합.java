@@ -16,11 +16,11 @@ public class 표_병합 {
     static int[][] heads;
 
     public String[] solution(String[] commands) {
-        table = new String[51][51];
-        heads = new int[51][51];
-        for (int r = 1; r < 51; r++) {
-            for (int c = 1; c < 51; c++) {
-                heads[r][c] = (r - 1) * 50 + c;
+        table = new String[50][50];
+        heads = new int[50][50];
+        for (int r = 0; r < 50; r++) {
+            for (int c = 0; c < 50; c++) {
+                heads[r][c] = r * 50 + c;
             }
         }
 
@@ -29,17 +29,17 @@ public class 표_병합 {
             String[] line = command.split(" ");
             switch (line[0]) {
                 case "UPDATE":
-                    if (line.length == 4) update(Integer.parseInt(line[1]), Integer.parseInt(line[2]), line[3]);
+                    if (line.length == 4) update(Integer.parseInt(line[1]) - 1, Integer.parseInt(line[2]) - 1, line[3]);
                     else update(line[1], line[2]);
                     break;
                 case "MERGE":
-                    merge(Integer.parseInt(line[1]), Integer.parseInt(line[2]), Integer.parseInt(line[3]), Integer.parseInt(line[4]));
+                    merge(Integer.parseInt(line[1]) - 1, Integer.parseInt(line[2]) - 1, Integer.parseInt(line[3]) - 1, Integer.parseInt(line[4]) - 1);
                     break;
                 case "UNMERGE":
-                    unmerge(Integer.parseInt(line[1]), Integer.parseInt(line[2]));
+                    unmerge(Integer.parseInt(line[1]) - 1, Integer.parseInt(line[2]) - 1);
                     break;
                 case "PRINT":
-                    answer.add(print(Integer.parseInt(line[1]), Integer.parseInt(line[2])));
+                    answer.add(print(Integer.parseInt(line[1]) - 1, Integer.parseInt(line[2]) - 1));
                     break;
             }
         }
@@ -48,23 +48,29 @@ public class 표_병합 {
     }
 
     static int find(int r, int c) {
-        if (heads[r][c] == ((r - 1) * 50) + c) return heads[r][c];
+        if (heads[r][c] == (r * 50) + c) return heads[r][c];
 
         int head = heads[r][c];
-        return heads[r][c] = find(head / 50 + 1, head % 50);
+        return heads[r][c] = find(head / 50, head % 50);
+    }
+
+    static void union(int r1, int c1, int r2, int c2) {
+        int a = find(r1, c1);
+        int b = find(r2, c2);
+        heads[b / 50][b % 50] = a;
     }
 
     static void update(int r, int c, String value) {
         int head = find(r, c);
-        int nr = head / 50 + 1;
+        int nr = head / 50;
         int nc = head % 50;
 
         table[nr][nc] = value;
     }
 
     static void update(String v1, String v2) {
-        for (int r = 1; r < 51; r++) {
-            for (int c = 1; c < 51; c++) {
+        for (int r = 0; r < 50; r++) {
+            for (int c = 0; c < 50; c++) {
                 if (v1.equals(table[r][c])) table[r][c] = v2;
             }
         }
@@ -75,41 +81,41 @@ public class 표_병합 {
         int idx1 = find(r1, c1);
         int idx2 = find(r2, c2);
         if (idx1 == idx2) return;
-        int nr1 = idx1 / 50 + 1;
+        int nr1 = idx1 / 50;
         int nc1 = idx1 % 50;
-        int nr2 = idx2 / 50 + 1;
+        int nr2 = idx2 / 50;
         int nc2 = idx2 % 50;
 
         if (table[nr1][nc1] == null && table[nr2][nc2] != null) {
             update(nr1, nc1, table[nr2][nc2]);
         }
-
-        for (int r = 1; r < 51; r++) {
-            for (int c = 1; c < 51; c++) {
-                if (heads[r][c] == idx1 || heads[r][c] == idx2) heads[r][c] = idx1;
-            }
-        }
         table[nr2][nc2] = null;
+        union(nr1, nc1, nr2, nc2);
 
     }
 
     static void unmerge(int r, int c) {
         int head = find(r, c);
-        String tmp = table[head / 50 + 1][head % 50];
-        for (int rr = 1; rr < 51; rr++) {
-            for (int cc = 1; cc < 51; cc++) {
-                if (find(rr, cc) == head) {
-                    heads[rr][cc] = (rr - 1) * 50 + cc;
-                    update(rr, cc, null);
-                }
+        String tmp = table[head / 50][head % 50];
+        ArrayList<Integer> deleteHead = new ArrayList<>();
+        for (int rr = 0; rr < 50; rr++) {
+            for (int cc = 0; cc < 50; cc++) {
+                if (find(rr, cc) == head) deleteHead.add(rr * 50 + cc);
             }
         }
+        for (int h : deleteHead) {
+            int nr = h / 50;
+            int nc = h % 50;
+            heads[nr][nc] = nr * 50 + nc;
+            update(nr, nc, null);
+        }
+
         update(r, c, tmp);
     }
 
     static String print(int r, int c) {
         int head = find(r, c);
-        return table[head / 50 + 1][head % 50] == null ? "EMPTY" : table[head / 50 + 1][head % 50];
+        return table[head / 50][head % 50] == null ? "EMPTY" : table[head / 50][head % 50];
     }
 
 }
