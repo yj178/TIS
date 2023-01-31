@@ -16,16 +16,17 @@ public class 업무_처리 {
         K = Integer.parseInt(tmp[1]);
         R = Integer.parseInt(tmp[2]);
         nodes = new Node[H][];
-        int w = 1;
+        int nodeCnt = 1;
         for (int h = 0; h < H; h++) {
-            nodes[h] = new Node[w];
-            for (int i = 0; i < w; i++) {
+            nodes[h] = new Node[nodeCnt];
+            for (int i = 0; i < nodeCnt; i++) {
                 nodes[h][i] = new Node();
             }
-            w *= 2;
+            nodeCnt *= 2;
         }
-        leafs = new LinkedList[w];
-        for (int i = 0; i < w; i++) {
+
+        leafs = new LinkedList[nodeCnt];
+        for (int i = 0; i < nodeCnt; i++) {
             leafs[i] = new LinkedList<>();
             tmp = br.readLine().split(" ");
             for(String t : tmp){
@@ -33,19 +34,17 @@ public class 업무_처리 {
             }
         }
 
-
-
         int ans = 0;
 
         for (int r = 1; r <= R; r++) {
-            int maxIdx = 1;
+            nodeCnt = 1;
             for (int h = 0; h < H; h++) {
                 if (h == 0) {
                     if (r % 2 == 1) ans += nodes[0][0].l.isEmpty() ? 0 : nodes[0][0].l.poll();
                     else ans += nodes[0][0].r.isEmpty() ? 0 : nodes[0][0].r.poll();
 
                 } else {
-                    for (int i = 0; i < maxIdx; i++) {
+                    for (int i = 0; i < nodeCnt; i++) {
 
                         if (r % 2 == 1) {
                             if (!nodes[h][i].l.isEmpty()) {
@@ -60,11 +59,11 @@ public class 업무_처리 {
                         }
                     }
                 }
-                maxIdx *= 2;
+                nodeCnt *= 2;
             }
 
             if (r <= K) {
-                for (int i = 0; i < w; i++) {
+                for (int i = 0; i < nodeCnt; i++) {
                     if (i % 2 == 0) nodes[H - 1][i / 2].l.add(leafs[i].poll());
                     else nodes[H - 1][i / 2].r.add(leafs[i].poll());
                 }
