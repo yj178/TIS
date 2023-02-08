@@ -2,11 +2,13 @@
 Today I Solved를 repository 운영 방식
 
 ## commit Convention
-{YYYYMMDD}-{state}-{code}-{#이슈번호}: 한줄평   
+{YYYYMMDD}-{state}-{code}-{#이슈번호}: 한줄평
+
 세부 항목   
 #풀이 방법 태그   
 
-ex) 20230131-solved-H138358-#10: 업무처리 문제 성공    
+ex) 20230131-solved-H138358-#10: 업무처리 문제 성공  
+  
 완전 이진 트리 형식으로 그래프를 생성하고 계층별 node의 인덱스 관계를 파악하여 문제를 해결함   
 #complete binary tree   
 
