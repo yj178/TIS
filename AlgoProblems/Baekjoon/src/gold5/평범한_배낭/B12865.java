@@ -1,14 +1,14 @@
-package 평범한_배낭;
+package gold5.평범한_배낭;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class 평범한_배낭 {
+class B12865 {
     static int N, K;
     static int[][] product, dp;
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] tmp = br.readLine().split(" ");
         N = Integer.parseInt(tmp[0]);

@@ -1,15 +1,15 @@
-package 가장_긴_증가하는_부분_수열_2;
+package gold2.가장_긴_증가하는_부분_수열_2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class 가장_긴_증가하는_부분_수열2 {
+class B12015 {
     static int N;
     static int[] arr;
     static int[] table;
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         init(br);
 
