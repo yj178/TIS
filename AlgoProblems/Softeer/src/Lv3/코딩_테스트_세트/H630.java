@@ -1,11 +1,11 @@
-package 코딩_테스트_세트;
+package Lv3.코딩_테스트_세트;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class Main {
+class H630 {
     static int N, T;
     static long[][] C, D;
     static final long MAX = 1000000000000L;

@@ -1,10 +1,10 @@
-package 장애물_인식_프로그램;
+package Lv2.장애물_인식_프로그램;
 
 import java.util.*;
 import java.io.*;
 
 
-public class 장애물_인식_프로그램 {
+class H409 {
     static int[] dr = {0, 0, 1, -1};
     static int[] dc = {1, -1, 0, 0};
     static int N;

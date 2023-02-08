@@ -1,10 +1,10 @@
-package 바이러스;
+package Lv2.바이러스;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+class H407 {
     static long K, P, N;
     static final long e = 1000000007;
     public static void main(String args[]) throws IOException

@@ -1,4 +1,4 @@
-package 사물인식_최소_면적_산출_프로그램;
+package Lv3.사물인식_최소_면적_산출_프로그램;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class 사물인식_최소_면적_산출_프로그램 {
+public class H531 {
     static int N, K, ans;
     static HashMap<Integer, ArrayList<Pos>> map;
     public static void main(String args[])throws IOException

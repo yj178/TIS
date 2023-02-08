@@ -1,4 +1,4 @@
-package 교차로;
+package Lv3.교차로;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main0 {
+public class H803 {
     static int N;
     static Queue<Car> q;
     static Queue<Integer>[] roads;

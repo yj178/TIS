@@ -1,4 +1,4 @@
-package 거리합_구하기;
+package Lv3.거리합_구하기;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 // 리프 노드의 경우 서브트리 사이즈는 1이다.
 // 해당 문제에서 서브트리 개수를 파악해야 효율적으로 계산이 가능하다.
 //
-class 거리합_구하기 {
+class H635 {
 
     static int N;
     static Node[] nodes;

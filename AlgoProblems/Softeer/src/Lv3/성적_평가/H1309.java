@@ -1,4 +1,4 @@
-package 성적_평가;
+package Lv3.성적_평가;
 
 import java.util.*;
 import java.io.*;
@@ -9,7 +9,7 @@ import java.io.*;
 
 // 등수는 점수가 높은 순
 // 동점은 같은 등수수
-public class 성적_평가 {
+public class H1309 {
     static int[][] score;
     static int N;
 

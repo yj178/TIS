@@ -1,11 +1,11 @@
-package 금고털이;
+package Lv2.금고털이;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class 금고털이 {
+class H395 {
     static int N, W;
     static Product[] list;
 

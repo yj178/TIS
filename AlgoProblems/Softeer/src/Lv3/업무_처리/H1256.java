@@ -1,10 +1,10 @@
-package 업무_처리;
+package Lv3.업무_처리;
 
 import java.util.*;
 import java.io.*;
 
 
-public class 업무_처리 {
+public class H1256 {
     static Node[][] nodes;
     static Queue<Integer>[] leafs;
     static int H, K, R;

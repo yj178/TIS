@@ -1,4 +1,4 @@
-package 로드_밸런서_트래픽_예측;
+package Lv3.로드_밸런서_트래픽_예측;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main0 {
+public class H629 {
     static int N;
     static long K;
     static Node[] nodes;

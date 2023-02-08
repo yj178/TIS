@@ -1,10 +1,10 @@
-package 비밀_메뉴2;
+package Lv3.비밀_메뉴2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class 비밀_메뉴2_1 {
+public class H633 {
     static int N, M, K;
     static int[] keys, inputs;
     static int[][] map;

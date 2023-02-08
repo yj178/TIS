@@ -1,4 +1,4 @@
-package 회의실_예약;
+package Lv2.회의실_예약;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-public class 회의실_예약 {
+public class H626 {
     static int N, M;
     static String[] names;
     static HashMap<String, Integer> map;

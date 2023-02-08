@@ -1,10 +1,10 @@
-package 주행거리_비교하기;
+package Lv1.주행거리_비교하기;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class 주행거리_비교하기 {
+class H1016 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] info = br.readLine().split(" ");
