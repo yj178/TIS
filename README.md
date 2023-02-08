@@ -2,23 +2,13 @@
 Today I Solved
 
 ## git Convention
-{YYYYMMDD}-{state}-{problems code}: 한줄평 #문제특성   
-문제풀이 방법
+{YYYYMMDD}-{state}-{problems code}-{#이슈번호}   
+한줄평   
+#풀이 방법 태그   
 
-ex) 20230131-solved-H138358: solving this problem using full binary tree and indexing #complete binary tree
-
-This problem has the following conditions.
-* H is greater than 1 and less than 10.
-* K is greater than 1 and less than 10.
-* R is greater than 1 and less than 1,000.
-
-Therefore, three things can be inferred as follows. 
-* The maximum number of leaf nodes is 1,024
-* The maximum of all workloads is about 10,000,000
-* Exploring all nodes according to the schedule is (sum of 2^n, from n = 0 to 10) * 10 = 20,470
-
-So, I used the int type variable ans(= workload), and checked the result by iterating through all situation. 
-
+ex) 20230131-solved-H138358-#10   
+완전 이진 트리 형식으로 그래프를 생성하고 계층별 node의 인덱스 관계를 파악하여 문제를 해결함   
+#complete binary tree   
 
 ### state 종류
 * solving : 문제 푸는 중
