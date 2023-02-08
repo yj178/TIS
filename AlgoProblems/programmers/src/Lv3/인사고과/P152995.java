@@ -1,4 +1,4 @@
-package 인사고과;
+package Lv3.인사고과;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
-public class 인사고과 {
+class P152995 {
     public static void main(String[] args) {
-        인사고과 problem = new 인사고과();
+        P152995 problem = new P152995();
         int[][] scores = new int[][]{{2, 2}, {1, 4}, {3, 2}, {3, 2}, {2, 1}};
         System.out.println(problem.solution(scores));
     }

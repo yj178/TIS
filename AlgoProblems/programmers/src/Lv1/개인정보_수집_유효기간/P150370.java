@@ -1,12 +1,12 @@
-package 개인정보_수집_유효기간;
+package Lv1.개인정보_수집_유효기간;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-public class 개인정보_수집_유효기간 {
-    public static void main(String[] args) {
-        개인정보_수집_유효기간 problem = new 개인정보_수집_유효기간();
+class P150370 {
+    static void main(String[] args) {
+        P150370 problem = new P150370();
         String today = "2022.05.19";
         String[] terms = {"A 6", "B 12", "C 3"};
         String[] privacies = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"};
@@ -19,8 +19,7 @@ public class 개인정보_수집_유효기간 {
     static HashMap<String, Integer> map;
     static PriorityQueue<Data> pq;
 
-    static
-    public int[] solution(String today, String[] terms, String[] privacies) {
+    static int[] solution(String today, String[] terms, String[] privacies) {
         todayInt = calcToday(today);
         map = new HashMap<>();
         pq = new PriorityQueue<>();
@@ -45,12 +44,12 @@ public class 개인정보_수집_유효기간 {
         return answer;
     }
 
-    public static int calcToday(String today) {
+    static int calcToday(String today) {
         String[] tmp = today.split("\\.");
         return YEARTODAY * Integer.parseInt(tmp[0]) + MONTODAY * Integer.parseInt(tmp[1]) + Integer.parseInt(tmp[2]);
     }
 
-    public static class Data implements Comparable<Data> {
+    static class Data implements Comparable<Data> {
         int endDay, idx;
 
         public Data(int startDay, int type, int idx) {

@@ -1,8 +1,8 @@
-package 마법의_엘리베이터;
+package Lv2.마법의_엘리베이터;
 
-class Solution {
+class P148653 {
     public static void main(String[] args) {
-        Solution test = new Solution();
+        P148653 test = new P148653();
         System.out.println(test.solution(16));
     }
 

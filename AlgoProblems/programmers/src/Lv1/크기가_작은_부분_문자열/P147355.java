@@ -1,10 +1,10 @@
-package 크기가_작은_부분_문자열;
+package Lv1.크기가_작은_부분_문자열;
 
-public class 크기가_작은_부분_문자열 {
+class P147355 {
     public static void main(String[] args) {
         String t = "3141592";
         String p = "271";
-        크기가_작은_부분_문자열 problem = new 크기가_작은_부분_문자열();
+        P147355 problem = new P147355();
         System.out.println(problem.solution(t, p));
     }
 

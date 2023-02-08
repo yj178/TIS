@@ -1,4 +1,4 @@
-package 테이블_해시_함수;
+package Lv2.테이블_해시_함수;
 
 import java.util.PriorityQueue;
 
@@ -15,9 +15,9 @@ row_begin <= i <= row_end인 모든 S_i를 누적하여 bitwise XOR 한 결과 �
 
 
  */
-class 테이블_해시_함수 {
+class P147354 {
     public static void main(String[] args) {
-        테이블_해시_함수 problem = new 테이블_해시_함수();
+        P147354 problem = new P147354();
         int[][] data = {{2, 2, 6}, {1, 5, 10}, {4, 2, 9}, {3, 8, 3}};
         int col = 2;
         int row_begin = 2;

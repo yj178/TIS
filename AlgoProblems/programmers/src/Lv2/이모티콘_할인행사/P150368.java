@@ -1,12 +1,12 @@
-package 이모티콘_할인행사;
+package Lv2.이모티콘_할인행사;
 
 import java.util.Arrays;
 
-class 이모티콘_할인행사 {
+class P150368 {
     public static void main(String[] args) {
         int[][] users = {{40, 10000}, {25, 10000}};
         int[] emoticons = {7000, 9000};
-        이모티콘_할인행사 problem = new 이모티콘_할인행사();
+        P150368 problem = new P150368();
         System.out.println(Arrays.toString(problem.solution(users, emoticons)));
     }
 

@@ -1,8 +1,8 @@
-package 미로_탈출_명령어;
+package Lv3.미로_탈출_명령어;
 
-public class 미로_탈출_명령어 {
+class P150365 {
     public static void main(String[] args) {
-        미로_탈출_명령어 problem = new 미로_탈출_명령어();
+        P150365 problem = new P150365();
 //        System.out.println(problem.solution(3, 4, 2, 3, 3, 1, 5));
         System.out.println(problem.solution(2, 2, 1, 1, 2, 2, 2));
     }

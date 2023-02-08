@@ -1,8 +1,8 @@
-package 점_찍기;
+package Lv2.점_찍기;
 
-public class 점_찍기 {
+class P140107 {
     public static void main(String[] args) {
-        점_찍기 problem = new 점_찍기();
+        P140107 problem = new P140107();
 
         int k = 2;
         int d = 4;

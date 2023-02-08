@@ -1,10 +1,10 @@
-package 표현_가능한_이진트리;
+package Lv3.표현_가능한_이진트리;
 
 import java.util.Arrays;
 
-public class 표현_가능한_이진트리 {
+class P150367 {
     public static void main(String[] args) {
-        표현_가능한_이진트리 problems = new 표현_가능한_이진트리();
+        P150367 problems = new P150367();
         long[] numbers = new long[]{7, 42, 5};
         System.out.println(Arrays.toString(problems.solution(numbers)));
     }
@@ -35,7 +35,7 @@ public class 표현_가능한_이진트리 {
             dep++;
         }
         String tmp = "";
-        for(long i = 0; i < l - strLen; i++){
+        for (long i = 0; i < l - strLen; i++) {
             tmp += "0";
         }
 

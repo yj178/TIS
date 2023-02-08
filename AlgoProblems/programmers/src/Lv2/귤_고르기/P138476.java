@@ -1,13 +1,13 @@
-package 귤_고르기;
+package Lv2.귤_고르기;
 
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-class 귤_고르기 {
-    public static void main(String[] args) {
-        귤_고르기 problem = new 귤_고르기();
+class P138476 {
+    static void main(String[] args) {
+        P138476 problem = new P138476();
         int k = 6;
         int[] tangerine = {1, 3, 2, 5, 4, 5, 2, 3};
         System.out.println(problem.solution(k, tangerine));

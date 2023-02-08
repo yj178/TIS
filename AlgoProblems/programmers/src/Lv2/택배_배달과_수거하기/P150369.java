@@ -1,15 +1,15 @@
-package 택배_배달과_수거하기;
+package Lv2.택배_배달과_수거하기;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class 택배_배달과_수거하기 {
+public class P150369 {
     public static void main(String[] args) {
         int cap = 4;
         int n = 5;
         int[] deliveries = {1, 0, 3, 1, 2};
         int[] pickups = {0, 3, 0, 4, 0};
-        택배_배달과_수거하기 problem = new 택배_배달과_수거하기();
+        P150369 problem = new P150369();
         System.out.println(problem.solution(cap, n, deliveries, pickups));
     }
 
