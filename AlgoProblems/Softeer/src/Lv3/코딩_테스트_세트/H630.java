@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 class H630 {
     static int N, T;
     static long[][] C, D;
-    static final long MAX = 1000000000000L;
+    static final long MAX = 2000000000000L;
 
     public static void main(String args[]) throws IOException {
         System.setIn(new FileInputStream("Softeer/input/input.txt"));
