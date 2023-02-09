@@ -1,8 +1,8 @@
 package Lv3.금과_은_운반하기;
 
-class Solution {
+class P86053 {
     public static void main(String[] args) {
-        Solution problem = new Solution();
+        P86053 problem = new P86053();
         int a = 10;
         int b = 10;
         int[] g = new int[]{100};
