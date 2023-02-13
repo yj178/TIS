@@ -7,12 +7,6 @@ import java.math.BigInteger;
 
 class Result {
 
-    /*
-     * Complete the 'extraLongFactorials' function below.
-     *
-     * The function accepts INTEGER n as parameter.
-     */
-
     public static void extraLongFactorials(int n) {
         // Write your code here
         System.out.println(fac(n));
