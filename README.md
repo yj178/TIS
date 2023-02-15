@@ -1,5 +1,5 @@
 # TIS Convention
-Today I Solved repository 운영 방식
+Today I Solved repository 사용 절차
 
 ## 문제 풀이 절차
 1. [이슈 생성](https://github.com/yj178/TIS/blob/main/.github/ISSUE_TEMPLATE/a-problem-i-will-solve-today-.md)
@@ -13,8 +13,6 @@ Today I Solved repository 운영 방식
 {YYYYMMDD}-{state}-{문제 이름}-{#이슈번호}: 한줄평 
 
 ex) 20230131-solved-업무처리-#10: 문제 통과 / 풀이 완료
-  
-
 
 ### state 종류
 * solving : 문제 푸는 중 (풀다가 다른 작업을 하게 되는 경우 임시로 저장)
