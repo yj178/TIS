@@ -11,6 +11,7 @@ class Solution {
         System.out.println(Arrays.toString(problem.solution(new String[]{"X591X", "X1X5X", "X231X", "1XXX1"})));
     }
 
+    static int[][] m;
     static boolean[][] chk;
     static int R, C;
     static int[] dr = {0, 0, 1, -1};
