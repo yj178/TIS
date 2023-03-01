@@ -1,8 +1,8 @@
 package Lv1.개인정보_수집_유효기간;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.PriorityQueue;
 
 class Solution {
     static void main(String[] args) {
@@ -17,49 +17,32 @@ class Solution {
     static final int MONTODAY = 28;
     static int todayInt;
     static HashMap<String, Integer> map;
-    static PriorityQueue<Data> pq;
 
-    static int[] solution(String today, String[] terms, String[] privacies) {
+    public int[] solution(String today, String[] terms, String[] privacies) {
         todayInt = calcToday(today);
         map = new HashMap<>();
-        pq = new PriorityQueue<>();
         for (String term : terms) {
             String[] tmp = term.split(" ");
             map.put(tmp[0], Integer.parseInt(tmp[1]));
         }
 
-        int idx = 0;
-        for (String privacy : privacies) {
-            String[] tmp = privacy.split(" ");
-            pq.add(new Data(calcToday(tmp[0]), map.get(tmp[1]) * MONTODAY, ++idx));
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < privacies.length; i++) {
+            String[] tmp = privacies[i].split(" ");
+            if(calcToday(tmp[0]) + map.get(tmp[1]) * MONTODAY <= todayInt) ans.add(i+1);
         }
 
-        PriorityQueue<Integer> ans = new PriorityQueue<>();
-        while (!pq.isEmpty() && pq.peek().endDay <= todayInt) {
-            ans.add(pq.poll().idx);
+        int[] answer = new int[ans.size()];
+        for(int i = 0; i < ans.size(); i++){
+            answer[i] = ans.get(i);
         }
-
-        int[] answer = ans.stream().sorted().mapToInt(Integer::intValue).toArray();
 
         return answer;
+        // return ans.stream().sorted().mapToInt(Integer::intValue).toArray();
     }
 
-    static int calcToday(String today) {
+    public static int calcToday(String today) {
         String[] tmp = today.split("\\.");
         return YEARTODAY * Integer.parseInt(tmp[0]) + MONTODAY * Integer.parseInt(tmp[1]) + Integer.parseInt(tmp[2]);
-    }
-
-    static class Data implements Comparable<Data> {
-        int endDay, idx;
-
-        public Data(int startDay, int type, int idx) {
-            this.endDay = startDay + type;
-            this.idx = idx;
-        }
-
-        @Override
-        public int compareTo(Data o) {
-            return Integer.compare(this.endDay, o.endDay);
-        }
     }
 }
