@@ -1,4 +1,4 @@
-# [programmers] [Lv2 귤_고르기]()
+# [programmers] [Lv2 귤_고르기](https://school.programmers.co.kr/learn/courses/30/lessons/138476)
 
 ## 목표
 > 귤 k를 고를 때, 서로 다른 종류의 수의 최소값을 return 하시오.
@@ -21,3 +21,4 @@
 
 ## 느낀 점
 없습니다.   
+

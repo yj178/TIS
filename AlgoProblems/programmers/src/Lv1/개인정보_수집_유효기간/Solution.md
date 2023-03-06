@@ -1,4 +1,4 @@
-# Lv1.개인정보_수집_유효기간
+# [programmers] [Lv1 개인정보_수집_유효기간](https://school.programmers.co.kr/learn/courses/30/lessons/150370)
 
 ## 목표
 > 파기해야 할 개인정보의 번호를 1차원 정부 배열에 오름차순으로 담아 리턴해야 합니다. 

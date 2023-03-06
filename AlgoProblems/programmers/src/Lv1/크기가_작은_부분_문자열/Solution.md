@@ -1,4 +1,4 @@
-# [programmers] Lv1.크기가_작은_부분_문자열
+# [programmers] [Lv1 크기가_작은_부분_문자열](https://school.programmers.co.kr/learn/courses/30/lessons/147355)
 
 # 목표
 > 숫자 문자열 t의 연속된 부분 문자열 중 p와 길이가 같은 문자열의 값이 p보다 작은 횟수를 구하시오.
