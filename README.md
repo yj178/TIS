@@ -10,15 +10,13 @@ Today I Solved repository 사용 절차
 6. pull request 생성 후 main branch에 병합
 
 ## commit Convention
-{YYYYMMDD}-{state}-{문제 이름}-{#이슈번호}: 한줄평 
+{YYYYMMDD}-{type}-{#이슈번호}: 한줄평 
 
 ex) 20230131-solved-업무처리-#10: 문제 통과 / 풀이 완료
 
-### state 종류
-* solving : 문제 푸는 중 (풀다가 다른 작업을 하게 되는 경우 임시로 저장)
-* solved : 문제 풀이 완료
-* refactor : TIS 내용 중 변경 사항이 발생한 경우
-* docs : readme, solution과 같은 문서를 작성하는 경우
+### type 종류
+* problem : 알고리즘 문제 코드 작성/수정, 알고리즘 문제 풀이 문서 작성/수정
+* docs : readme, issue template과 같은 문서를 작성하는 경우
   ※solution.md 파일 외의 문서는 main branch에서 작성
 
 ## package Convention
