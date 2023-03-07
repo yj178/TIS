@@ -12,12 +12,19 @@ Today I Solved repository 사용 절차
 ## commit Convention
 {YYYYMMDD}-{type}-{#이슈번호}: 한줄평 
 
-ex) 20230131-solved-업무처리-#10: 문제 통과 / 풀이 완료
+내용 : fix, docs, refactor의 경우 왜 했는지, 어떤 점을 변경했는지 작성할 것
+
+20230307-fix-#53: git convention 수정
+
+fix와 refactor 사용이 필요한 경우를 명확히 나눔
+기존의 problem은 커밋상에서 확인할 때 문제가 발생했다는 의미로 받아들일 수 있을 것으로 보여 feat으로 변경
+
 
 ### type 종류
-* problem : 알고리즘 문제 코드 작성/수정, 알고리즘 문제 풀이 문서 작성/수정
+* feat : 알고리즘 문제 코드 작성, 알고리즘 문제 풀이 문서 작성하는 경우
 * docs : readme, issue template과 같은 문서를 작성하는 경우
-  ※solution.md 파일 외의 문서는 main branch에서 작성
+* fix : 코드의 기능을 수정하거나 문서 내용을 수정하는 경우
+* refactor : 코드의 가독성을 향상시키기 위해 수정하는 경우
 
 ## package Convention
 * module - 문제풀이 사이트 명
