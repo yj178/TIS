@@ -1,5 +1,5 @@
 ---
-name: A problem I will solve baekjoon problem today.
+name: baekjoon problem
 about: 오늘 내가 풀 문제 등록
 title: "[baekjoon] "
 labels: problem
