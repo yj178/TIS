@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.io.*;
 
-public class Main {
+class Main {
 
     static int T, pr, pc;
     static int[] dr = { -1, -1, 0, 1, 1, 1, 0, -1 };
