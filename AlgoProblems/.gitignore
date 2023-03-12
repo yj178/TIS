@@ -93,3 +93,5 @@ fabric.properties
 
 # 시험문제
 /examProblem
+
+*.txt
