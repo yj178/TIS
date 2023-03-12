@@ -1,5 +1,4 @@
 package Gold4.시공의_돌풍;
-import java.util.*;
 import java.io.*;
 
 public class Main {
