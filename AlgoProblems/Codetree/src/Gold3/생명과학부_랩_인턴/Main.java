@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-public class Main {
+class Main {
     static int N, M, K;
     static int[] dr = { -1, 0, 1, 0 };
     static int[] dc = { 0, 1, 0, -1 };

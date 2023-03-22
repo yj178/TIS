@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-public class Main {
+class Main {
 	static int N, T;
 	static int[] index;
 	static HashSet<Integer>[] infos;

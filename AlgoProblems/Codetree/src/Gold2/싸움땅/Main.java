@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-public class Main {
+class Main {
     static int N, M, K;
     static Person[] persons;
     static PriorityQueue<Integer>[][] gun;
