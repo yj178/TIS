@@ -1,9 +1,8 @@
 package Gold3.이상한_다트_게임;
 
-import java.util.*;
 import java.io.*;
 
-public class Main {
+class Main {
     static int N, M, Q, sum, cnt;
     static int[][] map;
     static int[][] rotateInfo;

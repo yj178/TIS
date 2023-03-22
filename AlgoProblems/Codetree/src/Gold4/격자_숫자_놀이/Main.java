@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class Main {
+class Main {
     static int N, M, K, R, C;
     static boolean dir;
     static int[][] map;
