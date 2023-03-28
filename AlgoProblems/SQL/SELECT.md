@@ -1,3 +1,13 @@
+# Japanese Cities's Attributes
+```roomsql
+SELECT
+     *
+FROM
+     CITY
+WHERE
+     COUNTRYCODE = "JPN"
+```
+
 # 3월에 태어난 여성 회원 목록 출력하기
 ```roomsql
 SELECT 
