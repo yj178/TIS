@@ -3,14 +3,13 @@ Today I Solved repository 사용 절차
 
 ## 문제 풀이 절차
 1. [이슈 생성](https://github.com/yj178/TIS/blob/main/.github/ISSUE_TEMPLATE/a-problem-i-will-solve-today-.md)
-2. 이슈에서 branch 생성
-3. 문제 읽고 풀이 작성 
-4. 풀이 내용으로 코드 작성
-5. 풀이 내용에서 고려하지 못한 점이나 그 외 특이사항 정리
-6. pull request 생성 후 main branch에 병합
+2. 이슈는 주 단위로 생성
+3. 문제를 읽고 주석으로 구현할 절차를 작성
+4. 코드 작성
+5. 통과 후 pull request 생성, main branch에 병합
 
 ## commit Convention
-{YYYYMMDD}-{type}-{#이슈번호}: 한줄평 
+{#이슈번호}-{type}: 한줄평 
 
 내용 : fix, docs, refactor의 경우 왜 했는지, 어떤 점을 변경했는지 작성할 것
 
@@ -21,7 +20,7 @@ fix와 refactor 사용이 필요한 경우를 명확히 나눔
 
 
 ### type 종류
-* sol : 알고리즘 문제 코드 작성, 알고리즘 문제 풀이 문서 작성하는 경우
+* sol : 알고리즘 문제 코드 작성
 * docs : readme, issue template과 같은 문서를 작성하는 경우
 * fix : 코드의 기능을 수정하거나 문서 내용을 수정하는 경우
 * refactor : 코드의 가독성을 향상시키기 위해 수정하는 경우
