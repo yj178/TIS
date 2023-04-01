@@ -4,193 +4,270 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
-class Main {
-    static int N, M, K;
-    static Person[] persons;
-    static PriorityQueue<Integer>[][] gun;
-    static HashSet<Integer>[][] pos;
-    static int[] dr = {-1,0,1,0};
-    static int[] dc = {0,1,0,-1};
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        init(br);
-        simul();
-        System.out.println(printAns());
-    }
+/*
+ * 문제 이름 : 싸움땅
+ * 링크 : https://www.codetree.ai/training-field/frequent-problems/battle-ground/description?page=3&pageSize=20
+ * 시작시각 :14:34
+ * 종료시각 : 
+ * 소요시간 : 
+ */
+public class Main {
+	static PriorityQueue<Integer>[][] map;
+	static Info[] infos;
+	static HashMap<Pos, Integer> pos;
+	static int[] score;
+	static int[] dr = { -1, 0, 1, 0 };
+	static int[] dc = { 0, 1, 0, -1 };
+	static int N, M, K;
 
-    
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		init(br);
+		simul();
+		StringBuilder sb = new StringBuilder();
+		for (int s : score) {
+			sb.append(s + " ");
+		}
+		System.out.println(sb);
+	}
 
-    static void simul(){
-        for(int k = 1; k <= K; k++){
-            for(int m = 0; m < M; m++){
-                // System.out.println(k +", " + m);
-                if(move(m)) fight(m);
-                else selectGun(m);
-            }
-            // System.out.println(k+" : " +printAns());
-        }
-    }
+	static boolean chkOut(int r, int c) {
+		return r < 0 || r >= N || c < 0 || c >= N ? true : false;
+	}
 
-    static void fight(int m){
-        int r = persons[m].r;
-        int c = persons[m].c;
-        
-        int tmp = -1;
-        for(int idx : pos[r][c]){
-            if(idx != m) tmp = idx;
-        }
-        int b = tmp;
-        
-        Person A = persons[m];
-        Person B = persons[b];
-        // System.out.println("fight : " + m +", " + b);
-        // System.out.println("ap : " + A.calcAP() +", " + B.calcAP());
-        if(A.compareTo(B) < 1){
-            A.score += A.calcAP() - B.calcAP();
-            if(B.g != 0){
-                gun[r][c].add(B.g);
-                B.g = 0;
-            }
-            selectGun(m);
-            moveLoser(b);
-        }else{
-            B.score += B.calcAP() - A.calcAP();
-            if(A.g != 0){
-                gun[r][c].add(A.g);
-                A.g = 0;
-            }
-            selectGun(b);
-            moveLoser(m);
-        }
-    }
+	static int oppDir(int d) {
+		d += 2;
+		if (d > 3)
+			return d - 4;
+		else
+			return d;
+	}
 
-    static void moveLoser(int m){
-        int r = persons[m].r;
-        int c = persons[m].c;
-        int d = persons[m].d;
+	static void move(int m) {
+		Info me = infos[m];
 
-        // pos에서 현 위치 제거
-        pos[r][c].remove(m);
+		int nr = me.r + dr[me.d];
+		int nc = me.c + dc[me.d];
 
-        for(int dd = 0; dd < 4; dd++){
-            int nd = (d + dd) % 4;
-            int nr = r + dr[nd];
-            int nc = c + dc[nd];
-            if(chkOut(nr, nc) || !pos[nr][nc].isEmpty()) continue;
-            persons[m].d = nd;
-            persons[m].c = nc;
-            persons[m].r = nr;
-            break;
-        }
-        // System.out.println(m+"loser move :" + "("+r+","+c+") -->" + "("+persons[m].r+","+persons[m].c+")");
-        pos[persons[m].r][persons[m].c].add(m);
-        selectGun(m);
+		if (chkOut(nr, nc)) {
+			// 다음 위치가 격자 밖인 경우
+			me.d = oppDir(me.d);
+			nr = me.r + dr[me.d];
+			nc = me.c + dc[me.d];
+			if (pos.containsKey(new Pos(nr, nc))) {
+				// 사람이 있는 경우
+				int o = pos.get(new Pos(nr, nc));
 
-    }
+				if (me.compareTo(infos[o]) <= 0)
+					fight(nr, nc, m, o);
+				else
+					fight(nr, nc, o, m);
 
-    static void selectGun(int m){
-        int r = persons[m].r;
-        int c = persons[m].c;
-        int g = persons[m].g;
-        if(!gun[r][c].isEmpty() && g < gun[r][c].peek()){
-            if(g != 0) gun[r][c].add(g);
-            persons[m].g = gun[r][c].poll();
-        }
-    }
+			} else {
+				// 사람이 없는 경우
+				me.exMove();
+				me.move(nr, nc, m);
+				me.setGun();
+			}
 
-    static boolean move(int m){
-        int r = persons[m].r;
-        int c = persons[m].c;
-        // System.out.print("move : " + m + "("+r+","+ c+")");
-        
-        // pos에서 현 위치 제거
-        pos[r][c].remove(m);
+		} else {
+			// 다음 위치가 격자 내부인 경우
+			if (pos.containsKey(new Pos(nr, nc))) {
+				// 사람이 있는 경우
+				int o = pos.get(new Pos(nr, nc));
+				// 사람이 있는 경우
+				if (me.compareTo(infos[o]) <= 0)
+					fight(nr, nc, m, o);
+				else
+					fight(nr, nc, o, m);
 
-        // 이동한 좌표
-        int nr = r + dr[persons[m].d];
-        int nc = c + dc[persons[m].d];
-        // 이동시 격자를 벗어난다면 반대방향으로 전환 후 한칸 이동
-        if(chkOut(nr, nc)) {
-            persons[m].d = (persons[m].d + 2) % 4;
-            nr = r + dr[persons[m].d];
-            nc = c + dc[persons[m].d];
-        }
+			} else {
+				// 사람이 없는 경우
+				me.exMove();
+				me.move(nr, nc, m);
+				me.setGun();
+			}
+		}
+	}
 
-        // 위치 갱신
-        persons[m].r = nr;
-        persons[m].c = nc;
+	static int setDir(int d) {
+		if (d < 0)
+			return d + 4;
+		if (d > 3)
+			return d - 4;
+		return d;
+	}
 
-        pos[nr][nc].add(m);
+	static void fight(int r, int c, int m1, int m2) {
+		// 전투력 비교 m1이 무조건 전투력 높은 사람
+		Info win = infos[m1];
+		Info lose = infos[m2];
+		int diffAp = win.getAP() - lose.getAP();
+		win.exMove();
+		lose.exMove();
+		win.r = r;
+		win.c = c;
+		lose.r = r;
+		lose.c = c;
 
-        // System.out.println("->" +"("+nr+","+nc+")");
+		// 총 내려 놓고
+		lose.dropGun();
 
-        if(pos[nr][nc].size() == 1) return false; // 1명만 존재하면 총 선택
-        else return true; // 2명이 존재하면 전투
+		// 이동
+		for (int dd = 0; dd < 4; dd++) {
+			int nd = setDir(lose.d + dd);
 
-    }
+			int nr = r + dr[nd];
+			int nc = c + dc[nd];
+			if (chkOut(nr, nc) || pos.containsKey(new Pos(nr, nc)))
+				continue;
+			lose.move(nr, nc, m2);
+			lose.d = nd;
+			break;
+		}
+		lose.setGun();
 
-    static boolean chkOut(int r, int c){
-        return r < 0 || r >= N || c < 0 || c >= N ? true : false;
-    }
+		// 이긴 사람
+		win.move(r, c, m1);
 
-    static String printAns(){
-        String ans = "";
-        for(int m = 0; m < M;m++) {
-            ans += persons[m].score + " ";
-        }
-        return ans.substring(0,ans.length());
-    }
+		// 총 업뎃
+		win.setGun();
+		System.out.println();
+		// 점수 획득
+		System.out.println(m1 + " pos : " + win.r + ", " + win.c + " get " + diffAp + "/ " + win.d);
+		System.out.println(m2 + " pos : " + lose.r + ", " + lose.c+ "/ " + win.d);
+		
+		for(Map.Entry<Pos, Integer> e : pos.entrySet()) {
+			System.out.println(e.getValue() + ":" + e.getKey());
+		}
+		score[m1] += diffAp;
+	}
 
-    static void init(BufferedReader br) throws IOException{
-        String[] tmp = br.readLine().split(" ");
-        N = Integer.parseInt(tmp[0]);
-        M = Integer.parseInt(tmp[1]);
-        K = Integer.parseInt(tmp[2]);
-        gun = new PriorityQueue[N][N];
-        pos = new HashSet[N][N];
-        persons = new Person[M];
-        for(int r = 0; r < N; r++){
-            tmp = br.readLine().split(" ");
-            for(int c = 0; c < N; c++){
-                int ap = Integer.parseInt(tmp[c]);
-                gun[r][c]= new PriorityQueue<>(Collections.reverseOrder());
-                if(ap > 0) gun[r][c].add(ap);
-                pos[r][c] = new HashSet<>();
-            }
-        }
+	static void simul() {
+		for (int k = 0; k < K; k++) {
+			for (int m = 0; m < M; m++) {
+				// 이동
+				move(m);
+			}
+		}
+	}
 
-        for(int m = 0; m < M; m++){
-            tmp = br.readLine().split(" ");
-            int r = Integer.parseInt(tmp[0])-1;
-            int c = Integer.parseInt(tmp[1])-1;
-            int d = Integer.parseInt(tmp[2]);
-            int s = Integer.parseInt(tmp[3]);
-            persons[m] = new Person(r, c, d, s);
-            pos[r][c].add(m);
-        }
-    }
-    
+	static void init(BufferedReader br) throws IOException {
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+		map = new PriorityQueue[N][N];
+		score = new int[M];
+		for (int r = 0; r < N; r++) {
+			st = new StringTokenizer(br.readLine());
+			for (int c = 0; c < N; c++) {
+				map[r][c] = new PriorityQueue<>(Collections.reverseOrder());
+				map[r][c].add(Integer.parseInt(st.nextToken()));
+			}
+		}
 
-    static class Person implements Comparable<Person> {
-        int r, c, d, s, g, score;
+		infos = new Info[M];
+		pos = new HashMap<>();
+		for (int m = 0; m < M; m++) {
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
+			int d = Integer.parseInt(st.nextToken());
+			int s = Integer.parseInt(st.nextToken());
+			infos[m] = new Info(x - 1, y - 1, d, s);
+			pos.put(new Pos(x - 1, y - 1), m);
 
-        public Person(int r, int c, int d, int s) {
-            this.r = r;
-            this.c = c;
-            this.d = d;
-            this.s = s;
-        }
+		}
+	}
 
-        public int calcAP(){
-            return this.s + this.g;
-        }
+	static class Pos {
+		int r, c;
 
-        @Override
-        public int compareTo(Person o) {
-            return this.calcAP() != o.calcAP() ? Integer.compare(o.calcAP(), this.calcAP()) : Integer.compare(o.s, this.s);
-        }
-    }
+		public Pos(int r, int c) {
+			super();
+			this.r = r;
+			this.c = c;
+		}
+
+		@Override
+		public int hashCode() {
+			// TODO Auto-generated method stub
+			return this.r * 21 + c;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			// TODO Auto-generated method stub
+			if (obj.getClass() != Pos.class) {
+				return false;
+			}
+
+			Pos o = (Pos) obj;
+			if (this.r == o.r && this.c == o.c)
+				return true;
+			return false;
+		}
+
+		@Override
+		public String toString() {
+			return "Pos [r=" + r + ", c=" + c + "]";
+		}
+		
+
+	}
+
+	static class Info implements Comparable<Info> {
+		int r, c, d, s, g;
+
+		public Info(int r, int c, int d, int s) {
+			super();
+			this.r = r;
+			this.c = c;
+			this.d = d;
+			this.s = s;
+		}
+
+		public void setGun() {
+			if (!map[this.r][this.c].isEmpty() && map[this.r][this.c].peek() > this.g) {
+				if (this.g != 0)
+					map[this.r][this.c].add(this.g);
+				this.g = map[this.r][this.c].poll();
+			}
+		}
+
+		public int getAP() {
+			return this.g + this.s;
+		}
+
+		public void dropGun() {
+			if (this.g != 0)
+				map[this.r][this.c].add(this.g);
+			this.g = 0;
+		}
+
+		public void exMove() {
+			pos.remove(new Pos(this.r, this.c));
+		}
+
+		public void move(int r, int c, int m) {
+//			if (this.r == r && this.c == c)
+//				return;
+
+			this.r = r;
+			this.c = c;
+			pos.put(new Pos(r, c), m);
+		}
+
+		@Override
+		public int compareTo(Info o) {
+			return this.getAP() != o.getAP() ? o.getAP() - this.getAP() : o.s - this.s;
+		}
+
+	}
 }
