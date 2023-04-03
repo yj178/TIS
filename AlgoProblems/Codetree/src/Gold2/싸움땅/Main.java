@@ -13,8 +13,8 @@ import java.util.StringTokenizer;
  * 문제 이름 : 싸움땅
  * 링크 : https://www.codetree.ai/training-field/frequent-problems/battle-ground/description?page=3&pageSize=20
  * 시작시각 :14:34
- * 종료시각 : 
- * 소요시간 : 
+ * 종료시각 :
+ * 소요시간 :
  */
 public class Main {
 	static PriorityQueue<Integer>[][] map;
@@ -137,10 +137,10 @@ public class Main {
 
 		// 총 업뎃
 		win.setGun();
-		System.out.println();
+//		System.out.println();
 		// 점수 획득
-		System.out.println(m1 + " pos : " + win.r + ", " + win.c + " get " + diffAp + "/ " + win.d);
-		System.out.println(m2 + " pos : " + lose.r + ", " + lose.c+ "/ " + win.d);
+//		System.out.println(m1 + " pos : " + win.r + ", " + win.c + " get " + diffAp + "/ " + win.d);
+//		System.out.println(m2 + " pos : " + lose.r + ", " + lose.c+ "/ " + win.d);
 		
 		for(Map.Entry<Pos, Integer> e : pos.entrySet()) {
 			System.out.println(e.getValue() + ":" + e.getKey());
