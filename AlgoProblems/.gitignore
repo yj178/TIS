@@ -98,3 +98,4 @@ fabric.properties
 /.metadata/
 *.classpath
 *.project
+/Test
