@@ -61,6 +61,7 @@ public class Main {
 					if (--arr[next] == 0)
 						cnt++;
 					chk[next] = true;
+					if(next == end) chk[next] = false; 
 				}
 
 			}
@@ -71,25 +72,25 @@ public class Main {
 					cnt++;
 				chk[start] = true;
 			}
-			if (time < 10) {
-				if (start < end) {
-					for (int i = start; i <= end; i++) {
-						System.out.print((i + 1) + ":" + arr[i] + " ");
-					}
-					System.out.println();
-
-				} else {
-
-					for (int i = start; i < 2 * N; i++) {
-						System.out.print((i + 1) + ":" + arr[i] + " ");
-					}
-					for (int i = 0; i <= end; i++) {
-						System.out.print((i + 1) + ":" + arr[i] + " ");
-					}
-					System.out.println();
-				}
-				System.out.println(time + "/" + cnt);
-			}
+//			if (time < 10) {
+//				if (start < end) {
+//					for (int i = start; i <= end; i++) {
+//						System.out.print((i + 1) + ":" + arr[i] + " ");
+//					}
+//					System.out.println();
+//
+//				} else {
+//
+//					for (int i = start; i < 2 * N; i++) {
+//						System.out.print((i + 1) + ":" + arr[i] + " ");
+//					}
+//					for (int i = 0; i <= end; i++) {
+//						System.out.print((i + 1) + ":" + arr[i] + " ");
+//					}
+//					System.out.println();
+//				}
+//				System.out.println(time + "/" + cnt);
+//			}
 
 			if (cnt >= K)
 				return time;
