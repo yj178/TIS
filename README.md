@@ -13,7 +13,7 @@ Today I Solved repository 사용 절차
 
 내용 : fix, docs, refactor의 경우 왜 했는지, 어떤 점을 변경했는지 작성할 것
 
-20230307-fix-#53: git convention 수정
+#53-docs: git convention 수정
 
 fix와 refactor 사용이 필요한 경우를 명확히 나눔
 기존의 problem은 커밋상에서 확인할 때 문제가 발생했다는 의미로 받아들일 수 있을 것으로 보여 feat으로 변경
